@@ -1,6 +1,6 @@
 
-currentWorkingDirectory = "/home/ldrich/berlingeoheatmap_project1/"
-#currentWorkingDirectory = "/mount/src/berlingeoheatmap1/"
+#currentWorkingDirectory = "/home/ldrich/berlingeoheatmap_project1/"
+currentWorkingDirectory = "/mount/src/berlingeoheatmap1/"
 
 # -----------------------------------------------------------------------------
 import os
