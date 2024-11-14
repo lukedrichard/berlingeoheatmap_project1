@@ -1,11 +1,11 @@
 
 #currentWorkingDirectory = "/home/ldrich/berlingeoheatmap_project1/"
-currentWorkingDirectory = "/mount/src/berlingeoheatmap1/"
+#currentWorkingDirectory = "/mount/src/berlingeoheatmap1/"
 
 # -----------------------------------------------------------------------------
-import os
-os.chdir(currentWorkingDirectory)
-print("Current working directory\n" + os.getcwd())
+#import os
+#os.chdir(currentWorkingDirectory)
+#print("Current working directory\n" + os.getcwd())
 
 import pandas                        as pd
 from core import methods             as m1
