@@ -1,5 +1,5 @@
 
-currentWorkingDirectory = "C:\\(...)\\project1"
+currentWorkingDirectory = "/home/ldrich/berlingeoheatmap_project1/"
 #currentWorkingDirectory = "/mount/src/berlingeoheatmap1/"
 
 # -----------------------------------------------------------------------------
@@ -18,14 +18,14 @@ from config                          import pdict
 def main():
     """Main: Generation of Streamlit App for visualizing electric charging stations & residents in Berlin"""
 
-    df_geodat_plz   = #
+    df_geodat_plz   = pd.read_csv('plz_einwohner.csv')
     
-    df_lstat        = #
-    df_lstat2       = #
-    gdf_lstat3      = #
+    df_lstat        = pd.read_csv('Ladesaeulenregister.csv', delimiter = ';')
+    #df_lstat2       = #
+    #gdf_lstat3      = #
     
-    df_residents    = #
-    gdf_residents2  = #
+    #df_residents    = #
+    #gdf_residents2  = #
     
 # -----------------------------------------------------------------------------------------------------------------------
 
