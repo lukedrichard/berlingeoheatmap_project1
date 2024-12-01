@@ -12,19 +12,22 @@
   - Stores configuration details, such as file paths and relevant column names.
 
 ### Data Sources
-1. **Charging Stations Data** (`Ladesaeulenregister.csv`):
-   - Includes metadata and geographic locations of electric charging stations in Berlin.
+1. **Charging Stations Data** (`charging_stations_updated.csv`):
+   - Cleaned version of the original `Ladesaeulenregister.csv` dataset with the heading removed manually.
+   - Contains metadata and geographic locations of electric charging stations in Berlin.
 2. **Population Data** (`plz_einwohner.csv`):
-   - Contains population statistics mapped by postal codes in Berlin.
+   - Includes population statistics mapped by postal codes in Berlin.
+3. **Geospatial Data** (`geodata_berlin_plz.csv`):
+   - Provides geospatial information for mapping Berlin's postal code districts.
 
 ### Workflow
 1. **Data Import**:
-   - Load charging station and population data into the program.
+   - Load charging station, population, and geospatial data into the program.
 2. **Data Processing**:
    - Merge datasets using postal codes as the key.
    - Compute critical metrics like the population-to-charging-station ratio.
 3. **Geospatial Analysis**:
-   - Map these metrics to postal code regions within Berlin.
+   - Map these metrics to postal code regions within Berlin using geospatial data.
 4. **Visualization**:
    - Use Streamlit to create an interactive heatmap showcasing the analysis.
 
