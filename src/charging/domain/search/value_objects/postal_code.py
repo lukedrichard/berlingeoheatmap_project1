@@ -14,5 +14,4 @@ class PostalCode:
             )
 
     def _is_valid_berlin_postal_code(self) -> bool:
-        print(self.value)
         return len(self.value) == 5

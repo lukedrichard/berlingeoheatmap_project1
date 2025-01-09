@@ -1,10 +1,10 @@
 
-#currentWorkingDirectory = "/home/ldrich/berlingeoheatmap_project1/"
+currentWorkingDirectory = "/home/ldrich/berlingeoheatmap_project1/src/shared/"
 #currentWorkingDirectory = "/mount/src/berlingeoheatmap1/"
 
 # -----------------------------------------------------------------------------
-#import os
-#os.chdir(currentWorkingDirectory)
+import os
+os.chdir(currentWorkingDirectory)
 #print("Current working directory\n" + os.getcwd())
 
 import pandas                        as pd
@@ -15,7 +15,7 @@ from config                          import pdict
 
 # -----------------------------------------------------------------------------
 @ht.timer
-def main():
+def streamlit_heat_maps():
     """Main: Generation of Streamlit App for visualizing electric charging stations & residents in Berlin"""
 
     df_geodat_plz   = pd.read_csv('infrastructure/datasets/geodata_berlin_plz.csv', delimiter = ';')
@@ -34,5 +34,5 @@ def main():
 
 
 if __name__ == "__main__": 
-    main()
+    streamlit_heat_maps()
 
