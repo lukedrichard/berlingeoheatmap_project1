@@ -4,6 +4,7 @@ from src.charging.domain.search.entities.charging_station import ChargingStation
 class ChargingStationSearchRepository:
     def __init__(self):
         self._stations = []
+        self.fill_from_csv('src/charging/infrastructure/datasets/charging_stations_updated.csv')
 
     def find_by_postal_code(self, postal_code: PostalCode):
         """Find charging stations that match the given postal code."""

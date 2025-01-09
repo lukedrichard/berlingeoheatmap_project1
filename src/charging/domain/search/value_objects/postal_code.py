@@ -14,4 +14,4 @@ class PostalCode:
             )
 
     def _is_valid_berlin_postal_code(self) -> bool:
-        return len(self.value) == 5
+        return (len(self.value) == 5 and self.value.startswith(('10','12','13')))

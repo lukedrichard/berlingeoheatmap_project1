@@ -1,0 +1,4 @@
+from src.tests.charging import station_search
+
+station_search.test_search_stations_by_valid_postal_code()
+station_search.test_invalid_berlin_postal_code()

@@ -25,13 +25,14 @@ from src.charging.application.services.station_search_service import ChargingSta
 
 def create_streamlit_search_interface():
     repository = ChargingStationSearchRepository()
-    repository.fill_from_csv('src/charging/infrastructure/datasets/charging_stations_updated.csv')
+    #repository.fill_from_csv('src/charging/infrastructure/datasets/charging_stations_updated.csv')
     service = ChargingStationSearchService(repository)
 
     user_input = (st.text_input("Enter a Postal Code:"))
     try:
-        service.search_by_postal_code_2(user_input)
-
+        stations = service.search_by_postal_code_2(user_input)
+        if(len(stations) == 0):
+            st.write('There are no charging stations in this postal code. Please try again.')
     except Exception:
         st.write("The postal code you entered is invalid. Please try again.")
 

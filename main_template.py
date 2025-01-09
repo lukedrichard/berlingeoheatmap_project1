@@ -36,11 +36,7 @@ def main():
 
 
     if (layer_selection == 'Station_Search'):
-        try:
-            search_app.create_streamlit_search_interface()
-
-        except Exception:
-            st.write("The postal code you entered is invalid. Please try again.")
+        search_app.create_streamlit_search_interface()
 
     if(layer_selection == 'Station_Heat_Map'):
         m1.make_streamlit_electric_Charging_resid(gdf_lstat3, gdf_residents2)

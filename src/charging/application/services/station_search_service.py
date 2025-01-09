@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from src.charging.domain.search.value_objects.postal_code import PostalCode
+from src.charging.domain.search.value_objects.postal_code import PostalCode, InvalidPostalCodeException
 from src.charging.infrastructure.repositories.charging_station_search_repository import ChargingStationSearchRepository
 
 class ChargingStationSearchService:
@@ -17,7 +17,7 @@ class ChargingStationSearchService:
         validated_code = PostalCode(postal_code)
         stations = self.repository.find_by_postal_code_2(validated_code)
         self.create_location_df(stations)
-        return
+        return stations
 
     def create_location_df(self, stations):
         latitude = []
