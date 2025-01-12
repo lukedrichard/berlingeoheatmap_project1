@@ -16,8 +16,8 @@ class ChargingStationSearchService:
     def search_by_postal_code_2(self, postal_code: str):
         validated_code = PostalCode(postal_code)
         stations = self.repository.find_by_postal_code_2(validated_code)
-        self.create_location_df(stations)
-        return stations
+        locations_df = self.create_location_df(stations)
+        return stations, locations_df
 
     def create_location_df(self, stations):
         latitude = []
@@ -28,5 +28,5 @@ class ChargingStationSearchService:
 
         location_dict = {'latitude':latitude, 'longitude':longitude}
         location_df = pd.DataFrame(location_dict)
-        st.map(location_df, color = '#0000FF', size = 15)
-        return
+        
+        return location_df

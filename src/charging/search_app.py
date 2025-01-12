@@ -30,9 +30,11 @@ def create_streamlit_search_interface():
 
     user_input = (st.text_input("Enter a Postal Code:"))
     try:
-        stations = service.search_by_postal_code_2(user_input)
+        stations, locations_df = service.search_by_postal_code_2(user_input)
         if(len(stations) == 0):
             st.write('There are no charging stations in this postal code. Please try again.')
+        else:
+            st.map(locations_df, color = '#0000FF', size = 15)
     except Exception:
         st.write("The postal code you entered is invalid. Please try again.")
 
