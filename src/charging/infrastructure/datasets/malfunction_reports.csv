@@ -1,0 +1,2 @@
+postal_code,station_id,user_name,user_email,user_phone_number,description,timestamp,resolved
+12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-18 02:26:42,False
