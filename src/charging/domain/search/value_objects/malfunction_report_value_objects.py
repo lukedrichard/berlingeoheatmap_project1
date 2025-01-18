@@ -1,7 +1,8 @@
 import re
 
 class Email:
-    def __init__(self, email: str):
+    def __init__(self, email):
+        email = str(email)  # 🔹 Convert input to string
         if not self.is_valid(email):
             raise ValueError("Invalid email format")
         self.value = email
@@ -15,7 +16,8 @@ class Email:
 
 
 class PhoneNumber:
-    def __init__(self, phone_number: str):
+    def __init__(self, phone_number):
+        phone_number = str(phone_number)  # 🔹 Convert input to string
         if not self.is_valid(phone_number):
             raise ValueError("Invalid phone number format")
         self.value = phone_number
@@ -29,7 +31,8 @@ class PhoneNumber:
 
 
 class PostalCode:
-    def __init__(self, postal_code: str):
+    def __init__(self, postal_code):
+        postal_code = str(postal_code)  # 🔹 Convert input to string
         if not self.is_valid(postal_code):
             raise ValueError("Invalid postal code format")
         self.value = postal_code
