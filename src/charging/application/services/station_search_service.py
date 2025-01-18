@@ -1,8 +1,9 @@
 import pandas as pd
-import streamlit as st
+from datetime import datetime
 
 from src.charging.domain.search.value_objects.postal_code import PostalCode, InvalidPostalCodeException
 from src.charging.infrastructure.repositories.charging_station_search_repository import ChargingStationSearchRepository
+from src.charging.domain.search.events.station_search_performed import StationSearchPerformed
 
 class ChargingStationSearchService:
     def __init__(self, repository: ChargingStationSearchRepository):
@@ -17,7 +18,8 @@ class ChargingStationSearchService:
         validated_code = PostalCode(postal_code)
         stations = self.repository.find_by_postal_code_2(validated_code)
         locations_df = self.create_location_df(stations)
-        return stations, locations_df
+        event = StationSearchPerformed(postal_code,datetime.now(),len(stations))
+        return stations, event, locations_df
 
     def create_location_df(self, stations):
         latitude = []

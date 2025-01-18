@@ -5,4 +5,4 @@ from datetime import datetime
 class StationSearchPerformed:
     postal_code: str
     timestamp: datetime
-    station_found: int
+    stations_found: int

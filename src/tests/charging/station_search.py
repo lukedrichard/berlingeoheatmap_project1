@@ -8,12 +8,12 @@ def test_search_stations_by_valid_postal_code():
     postal_code = "10115"
     service = ChargingStationSearchService(ChargingStationSearchRepository())
 
-    result = service.search_by_postal_code_2(postal_code)
+    stations, event, locations_df  = service.search_by_postal_code_2(postal_code)
     
-    #assert isinstance(result.event, StationSearchPerformed)
-    assert len(result) > 1
+    assert isinstance(event, StationSearchPerformed)
+    assert len(stations) > 1
     assert all(station.is_in_postal_code(postal_code)
-               for station in result)
+               for station in stations)
     
 def test_invalid_berlin_postal_code():
     service = ChargingStationSearchService(ChargingStationSearchRepository())

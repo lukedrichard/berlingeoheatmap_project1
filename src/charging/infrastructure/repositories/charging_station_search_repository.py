@@ -34,11 +34,12 @@ class ChargingStationSearchRepository:
     
         df = pd.read_csv(path_to_csv)
         for index, row in df.iterrows():
+            id = str(index)
             postal_code = str(row['Postleitzahl'])
             latitude = float(str(row['Breitengrad']).replace(',', '.'))
             longitude = float(str(row['Längengrad']).replace(',','.'))
            
-            self.add_charging_station(ChargingStation(postal_code, latitude, longitude))
+            self.add_charging_station(ChargingStation(id, postal_code, latitude, longitude))
 
         return
     

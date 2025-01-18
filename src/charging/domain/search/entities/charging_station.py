@@ -3,6 +3,7 @@ from src.charging.domain.search.value_objects.postal_code import PostalCode
 
 @dataclass
 class ChargingStation:
+    id: str
     postal_code: str
     latitude: float
     longitude: float
