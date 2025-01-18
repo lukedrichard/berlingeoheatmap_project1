@@ -12,6 +12,7 @@ import streamlit                        as st
 from src.shared import methods          as m1
 from src.shared import HelperTools      as ht
 from src.charging                       import search_app
+from src.charging                       import malfunction_report
 
 
 from src.shared.config                  import pdict
@@ -32,12 +33,15 @@ def main():
 
     st.title("My Streamlit App")
 
-    layer_selection = st.radio("Select Layer", ("Station_Heat_Map", 'Station_Search'))
+    layer_selection = st.radio("Select Layer", ("Station_Heat_Map", 'Station_Search', 'Report_Malfunction'))
 
 
     if (layer_selection == 'Station_Search'):
         search_app.create_streamlit_search_interface()
 
+    if (layer_selection == 'Report_Malfunction'):
+        malfunction_report.create_reporting_interface()
+        
     if(layer_selection == 'Station_Heat_Map'):
         m1.make_streamlit_electric_Charging_resid(gdf_lstat3, gdf_residents2)
 # -----------------------------------------------------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+import streamlit as st
 from src.charging.application.services.malfunction_report_service import MalfunctionReportingService
 from src.charging.infrastructure.repositories.malfunction_report_repository import MalfunctionReportRepository
 
@@ -46,3 +47,26 @@ def get_all_malfunction_report():
 
 #     except ValueError as e:
 #         print(f"Error: {e}")
+
+def create_reporting_interface():
+    with st.form(key='user_form'):
+        postal_code = st.text_input('Postal Code: ')
+        station_id = st.text_input('Station ID: ')
+        name = st.text_input('Your Name: ')
+        email = st.text_input('email: ')
+        phone_number = st.text_input('Phone Number: ')
+        message = st.text_input('Message: ')
+
+        submit_button = st.form_submit_button(label ='Submit')
+
+    if submit_button:
+        try:
+            repository = MalfunctionReportRepository()
+            service = MalfunctionReportingService(repository)
+            service.report_malfunction(postal_code, station_id, name, email, phone_number, message)
+            st.write('Thank you for your help!')
+        except Exception as e:
+            st.write('Report Unsuccessful')
+            st.write(f'Backend Error: {e}')
+
+    return

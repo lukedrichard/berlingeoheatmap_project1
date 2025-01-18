@@ -6,21 +6,10 @@
 
 # Now import your modules
 import streamlit as st
+import folium
+from streamlit_folium import st_folium
 from src.charging.infrastructure.repositories.charging_station_search_repository import ChargingStationSearchRepository
 from src.charging.application.services.station_search_service import ChargingStationSearchService
-
-
-# Initialize repository and service
-#repository = ChargingStationSearchRepository()
-#service = ChargingStationSearchService(repository)
-
-# Perform a search
-#postal_code_to_search = "72537"  # Example Berlin postal code
-#stations = service.search_by_postal_code(postal_code_to_search)
-#if len(stations) > 0:
-#    print(f"{len(stations)} Charging stations in postal code {postal_code_to_search}:")
-#else:
-#    print("No charging stations found for the given postal code.")
 
 
 def create_streamlit_search_interface():
@@ -34,7 +23,20 @@ def create_streamlit_search_interface():
         if(len(stations) == 0):
             st.write('There are no charging stations in this postal code. Please try again.')
         else:
-            st.map(locations_df, color = '#0000FF', size = 15)
+            #st.map(locations_df, color = '#0000FF', size = 15)
+            #instantiate map
+            map = folium.Map([stations[0].latitude,stations[0].longitude], zoom_start=15)
+            #add markers for each station
+            locations =[]
+            for station in stations:
+                location = [station.latitude, station.longitude]
+                message = 'Available' if station.available else 'Not Available'
+                folium.Marker(location, popup=message).add_to(map)
+                locations.append(location)
+            #display the map
+            map.fit_bounds(locations)
+            st_data = st_folium(map, width=700, height=500)
+
     except Exception:
         st.write("The postal code you entered is invalid. Please try again.")
 

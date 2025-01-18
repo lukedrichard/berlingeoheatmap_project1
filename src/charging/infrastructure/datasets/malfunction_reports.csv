@@ -1,2 +1,4 @@
 postal_code,station_id,user_name,user_email,user_phone_number,description,timestamp,resolved
 12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-18 02:26:42,False
+13357,1,Luke Daniel Richard,ldrichard92@gmail.com,015215197219,test,2025-01-18 15:49:20,False
+13357,1,Luke Daniel Richard,ldrichard92@gmail.com,015215197219,test,2025-01-18 15:54:36,False
