@@ -8,7 +8,7 @@ def test_search_stations_by_valid_postal_code():
     postal_code = "10115"
     service = ChargingStationSearchService(ChargingStationSearchRepository())
 
-    stations, event, locations_df  = service.search_by_postal_code_2(postal_code)
+    stations, event  = service.search_by_postal_code_2(postal_code)
     
     assert isinstance(event, StationSearchPerformed)
     assert len(stations) > 1

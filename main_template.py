@@ -31,11 +31,12 @@ def main():
     df_residents    = pd.read_csv('src/shared/infrastructure/datasets/plz_einwohner.csv')
     gdf_residents2  = m1.preprop_resid(df_residents, df_geodat_plz, pdict)
 
+    #Create the streamlit app
     st.title("My Streamlit App")
 
+    #Creates list of options for the user to choose from; will execute the chosen part of the app
     layer_selection = st.radio("Select Layer", ("Station_Heat_Map", 'Station_Search', 'Report_Malfunction'))
-
-
+    
     if (layer_selection == 'Station_Search'):
         search_app.create_streamlit_search_interface()
 

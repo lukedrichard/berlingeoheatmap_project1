@@ -17,16 +17,17 @@ class ChargingStationSearchService:
     def search_by_postal_code_2(self, postal_code: str):
         validated_code = PostalCode(postal_code)
         stations = self.repository.find_by_postal_code_2(validated_code)
-        locations_df = self.create_location_df(stations)
+        #locations_df = self.create_location_df(stations)
         event = StationSearchPerformed(postal_code,datetime.now(),len(stations))
-        return stations, event, locations_df
+        return stations, event
 
     def create_location_df(self, stations):
         latitude = []
         longitude = []
         for station in stations:
-            latitude.append(station.latitude)
-            longitude.append(station.longitude)
+            location = station.get_station_location()
+            latitude.append(location[0])
+            longitude.append(location[1])
 
         location_dict = {'latitude':latitude, 'longitude':longitude}
         location_df = pd.DataFrame(location_dict)

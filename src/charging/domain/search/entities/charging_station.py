@@ -12,3 +12,12 @@ class ChargingStation:
     
     def is_in_postal_code(self, code: str) -> bool:
         return self.postal_code == code
+    
+    def get_station_location(self):
+        return [self.latitude, self.longitude]
+
+    def check_availability(self) -> bool:
+        return self.available
+    
+    def get_id(self) -> str:
+        return self.id

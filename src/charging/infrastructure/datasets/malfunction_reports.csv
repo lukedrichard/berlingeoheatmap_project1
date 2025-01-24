@@ -5,3 +5,6 @@ postal_code,station_id,user_name,user_email,user_phone_number,description,timest
 12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-18 21:34:12,False
 12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-18 21:39:40,False
 12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-18 21:42:24,False
+12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-24 14:09:24,False
+12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-24 14:12:23,False
+12345,STN001,John Doe,johndoe@example.com,+1234567890,Machine not working,2025-01-24 15:04:21,False
