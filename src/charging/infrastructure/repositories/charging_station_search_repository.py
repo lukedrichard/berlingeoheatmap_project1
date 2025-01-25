@@ -1,6 +1,7 @@
 import pandas as pd
 from src.charging.domain.search.value_objects.postal_code import PostalCode
 from src.charging.domain.search.entities.charging_station import ChargingStation
+
 class ChargingStationSearchRepository:
     def __init__(self):
         self._stations = []
@@ -22,6 +23,7 @@ class ChargingStationSearchRepository:
         for station in self._stations:
             if station.is_in_postal_code(postal_code.value):
                 stations_in_postal_code.append(station)
+
         return stations_in_postal_code
     
     def add_charging_station(self, new_station :ChargingStation):

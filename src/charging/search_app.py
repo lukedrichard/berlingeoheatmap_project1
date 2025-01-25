@@ -3,6 +3,7 @@ import folium
 from streamlit_folium import folium_static
 from src.charging.infrastructure.repositories.charging_station_search_repository import ChargingStationSearchRepository
 from src.charging.application.services.station_search_service import ChargingStationSearchService
+from src.charging.domain.search.value_objects.postal_code import InvalidPostalCodeException
 
 
 def create_streamlit_search_interface():
@@ -34,7 +35,7 @@ def create_streamlit_search_interface():
                 map.fit_bounds(locations)
                 folium_static(map, width=700, height=500)
 
-        except Exception:
+        except InvalidPostalCodeException:
             st.write("The postal code you entered is invalid. Please try again.")
 
     return
