@@ -35,12 +35,12 @@ def main():
     st.title("My Streamlit App")
 
     #Creates list of options for the user to choose from; will execute the chosen part of the app
-    layer_selection = st.radio("Select Layer", ("Station_Heat_Map", 'Station_Search', 'Report_Malfunction'))
+    layer_selection = st.radio("Select Layer", ("Station_Heat_Map", 'Station_Search', 'Malfunction_Reports'))
     
     if (layer_selection == 'Station_Search'):
         search_app.create_streamlit_search_interface()
 
-    if (layer_selection == 'Report_Malfunction'):
+    if (layer_selection == 'Malfunction_Reports'):
         malfunction_report.create_reporting_interface()
         
     if(layer_selection == 'Station_Heat_Map'):

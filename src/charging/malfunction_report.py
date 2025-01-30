@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 from src.charging.application.services.malfunction_report_service import MalfunctionReportingService
 from src.charging.infrastructure.repositories.malfunction_report_repository import MalfunctionReportRepository
@@ -49,24 +50,57 @@ def get_all_malfunction_report():
 #         print(f"Error: {e}")
 
 def create_reporting_interface():
-    with st.form(key='user_form'):
-        postal_code = st.text_input('Postal Code: ')
-        station_id = st.text_input('Station ID: ')
-        name = st.text_input('Your Name: ')
-        email = st.text_input('email: ')
-        phone_number = st.text_input('Phone Number: ')
-        message = st.text_input('Message: ')
+    layer_selection = st.radio("Select Layer", ("Report a Malfunction", "See All Reports", "Searh by Postal Code"))
+    if(layer_selection == 'Report a Malfunction'):
+        with st.form(key='user_form'):
+            postal_code = st.text_input('Postal Code: ')
+            station_id = st.text_input('Station ID: ')
+            name = st.text_input('Your Name: ')
+            email = st.text_input('email: ')
+            phone_number = st.text_input('Phone Number: ')
+            message = st.text_input('Message: ')
 
-        submit_button = st.form_submit_button(label ='Submit')
+            submit_button = st.form_submit_button(label ='Submit')
 
-    if submit_button:
+        if submit_button:
+            try:
+                repository = MalfunctionReportRepository()
+                service = MalfunctionReportingService(repository)
+                service.report_malfunction(postal_code, station_id, name, email, phone_number, message)
+                st.write('Thank you for your help!')
+            except Exception as e:
+                st.write('Report Unsuccessful')
+                st.write(f'Backend Error: {e}')
+
+    if (layer_selection == 'See All Reports'):
+        repository = MalfunctionReportRepository()
+        service = MalfunctionReportingService(repository)
+
         try:
-            repository = MalfunctionReportRepository()
-            service = MalfunctionReportingService(repository)
-            service.report_malfunction(postal_code, station_id, name, email, phone_number, message)
-            st.write('Thank you for your help!')
-        except Exception as e:
-            st.write('Report Unsuccessful')
-            st.write(f'Backend Error: {e}')
+            reports = service.get_all_reports()
+            for report in reports:
+                output = '\n'.join(f"{key}: {value}" for key,value in report.items())
+                st.text(output)
 
+        except ValueError as e:
+            st.write(f"Error: {e}")
+
+    if(layer_selection == 'Searh by Postal Code'):
+
+        user_input = (st.text_input("Enter a Postal Code:"))
+        if user_input:
+            try:
+                repository = MalfunctionReportRepository()
+                service = MalfunctionReportingService(repository)
+                reports = service.get_reports_by_postal_code(user_input)
+
+                if(len(reports) == 0):
+                    st.write('There are no malfunction reports for this postal code. Please try again.')
+                else:
+                    for report in reports:
+                        st.text(report)
+
+            except ValueError as e:
+                st.write(f"Error: {e}")
+                
     return
